@@ -56,6 +56,11 @@
       // 3. Limpa e injeta o novo conteúdo
       app.innerHTML = html;
 
+      // Restaura rascunho se estiver entrando na página de cadastro
+      if (caminho === '/cadastro' && typeof window.restaurarRascunho === 'function') {
+        window.restaurarRascunho();
+      }
+
       // Reconstroi os componentes a partir dos templates
       if (typeof window.renderizarTemplates === 'function') {
         window.renderizarTemplates();

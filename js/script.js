@@ -7,6 +7,109 @@
   'use strict';
 
   /* ==========================================================
+     RASCUNHO DO FORMULÁRIO — persistência em localStorage
+     ========================================================== */
+  const STORAGE_KEY = 'luznarua_rascunho';
+  let salvarTimer = null;
+
+  function coletarFormulario() {
+    const v = (id) => (document.getElementById(id)?.value || '').trim();
+    return {
+      nome:           v('nome'),
+      email:          v('email'),
+      cpf:            v('cpf'),
+      telefone:       v('telefone'),
+      nascimento:     v('nascimento'),
+      cep:            v('cep'),
+      logradouro:     v('logradouro'),
+      numero:         v('numero'),
+      complemento:    v('complemento'),
+      bairro:         v('bairro'),
+      cidade:         v('cidade'),
+      uf:             v('uf'),
+      perfil:         document.querySelector('input[name="perfil"]:checked')?.value || '',
+      disponibilidade: v('disponibilidade'),
+      mensagem:       v('mensagem'),
+      atualizado:     new Date().toISOString()
+    };
+  }
+
+  function salvarRascunho() {
+    const form = document.getElementById('form-cadastro');
+    if (!form || form.hidden) return;
+
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(coletarFormulario()));
+    } catch (e) {
+      /* localStorage cheio ou bloqueado — segue sem persistir */
+    }
+  }
+
+  function salvarRascunhoComAtraso() {
+    clearTimeout(salvarTimer);
+    salvarTimer = setTimeout(salvarRascunho, 400);
+  }
+
+  function restaurarRascunho() {
+    const bruto = localStorage.getItem(STORAGE_KEY);
+    if (!bruto) return;
+
+    let rascunho;
+    try {
+      rascunho = JSON.parse(bruto);
+    } catch (e) {
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    const preencher = (id, valor) => {
+      const el = document.getElementById(id);
+      if (el && valor) el.value = valor;
+    };
+
+    preencher('nome',            rascunho.nome);
+    preencher('email',           rascunho.email);
+    preencher('cpf',             rascunho.cpf);
+    preencher('telefone',        rascunho.telefone);
+    preencher('nascimento',      rascunho.nascimento);
+    preencher('cep',             rascunho.cep);
+    preencher('logradouro',      rascunho.logradouro);
+    preencher('numero',          rascunho.numero);
+    preencher('complemento',     rascunho.complemento);
+    preencher('bairro',          rascunho.bairro);
+    preencher('cidade',          rascunho.cidade);
+    preencher('uf',              rascunho.uf);
+    preencher('disponibilidade', rascunho.disponibilidade);
+    preencher('mensagem',        rascunho.mensagem);
+
+    if (rascunho.perfil) {
+      const radio = document.querySelector(`input[name="perfil"][value="${rascunho.perfil}"]`);
+      if (radio) radio.checked = true;
+    }
+
+    // Reaplica máscaras e validações nos campos restaurados
+    ['cpf', 'telefone', 'cep'].forEach((id) => {
+      const campo = document.getElementById(id);
+      if (campo && campo.value) {
+        campo.dispatchEvent(new Event('validar', { bubbles: true }));
+      }
+    });
+
+    if (typeof window.exibirToast === 'function') {
+      window.exibirToast('Rascunho restaurado. Continue de onde parou.', 'info', 3500);
+    }
+  }
+
+  function limparRascunho() {
+    localStorage.removeItem(STORAGE_KEY);
+  }
+
+  // Expõe para o router
+  window.restaurarRascunho = restaurarRascunho;
+  window.limparRascunho    = limparRascunho;
+
+
+  /* ==========================================================
      0. TOAST
      ========================================================== */
   let toastTimer = null;
@@ -186,6 +289,12 @@
       e.target.value = mascararCEP(e.target.value);
       e.target.dispatchEvent(new Event('validar', { bubbles: true }));
     }
+    
+    // Salva rascunho (com atraso para não escrever a cada tecla)
+    if (e.target.closest('#form-cadastro')) {
+      salvarRascunhoComAtraso();
+    }
+
   });
 
   // ----- Validações por delegação -----
@@ -287,6 +396,7 @@
       msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
       msg.focus();
     }
+    limparRascunho();
     exibirToast('Cadastro enviado! Entraremos em contato em até 2 dias úteis.', 'sucesso', 6000);
   });
 
