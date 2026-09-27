@@ -18,7 +18,6 @@
 
   <header class="cabecalho">
     <div class="container cabecalho__interno">
-
       <a href="#/inicio" class="logo" aria-label="Instituto Luz na Rua — página inicial">
         <svg class="logo__icone" viewBox="0 0 48 48" width="42" height="42" aria-hidden="true" focusable="false">
           <circle cx="24" cy="18" r="7" fill="#f4a261"></circle>
@@ -37,8 +36,7 @@
       </a>
 
       <button class="menu-toggle" type="button"
-              aria-expanded="false"
-              aria-controls="menu-principal"
+              aria-expanded="false" aria-controls="menu-principal"
               aria-label="Abrir menu de navegação">
         <span class="menu-toggle__barra"></span>
         <span class="menu-toggle__barra"></span>
@@ -48,12 +46,9 @@
       <nav id="menu-principal" class="navegacao" aria-label="Navegação principal">
         <ul class="navegacao__lista">
           <li><a href="#/inicio" data-rota="/inicio">Início</a></li>
-
           <li class="tem-submenu">
             <button class="navegacao__botao" type="button"
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    data-rota="/projetos">
+                    aria-expanded="false" aria-haspopup="true" data-rota="/projetos">
               Projetos <span aria-hidden="true">▾</span>
             </button>
             <ul class="submenu">
@@ -63,28 +58,21 @@
               <li><a href="#/projetos" data-rota="/projetos">Ver todos os projetos</a></li>
             </ul>
           </li>
-
           <li><a href="#/cadastro" class="navegacao__destaque" data-rota="/cadastro">Quero Ajudar</a></li>
         </ul>
       </nav>
-
     </div>
   </header>
 
-  <!-- Container onde as rotas são injetadas -->
   <main id="app" tabindex="-1" aria-live="polite"></main>
 
   <footer class="rodape">
     <div class="container rodape__grade">
-
       <section class="rodape__coluna">
         <h2 class="rodape__titulo">Instituto Luz na Rua</h2>
-        <p>
-          Organização da sociedade civil sem fins lucrativos.<br>
-          CNPJ 12.345.678/0001-90 · Utilidade Pública Municipal.
-        </p>
+        <p>Organização da sociedade civil sem fins lucrativos.<br>
+        CNPJ 12.345.678/0001-90 · Utilidade Pública Municipal.</p>
       </section>
-
       <nav class="rodape__coluna" aria-label="Navegação do rodapé">
         <h2 class="rodape__titulo">Navegação</h2>
         <ul class="rodape__lista">
@@ -93,7 +81,6 @@
           <li><a href="#/cadastro">Seja voluntário ou doador</a></li>
         </ul>
       </nav>
-
       <section class="rodape__coluna">
         <h2 class="rodape__titulo">Contato</h2>
         <address class="rodape__endereco">
@@ -103,9 +90,7 @@
           <a href="mailto:contato@institutoluznarua.org.br">contato@institutoluznarua.org.br</a>
         </address>
       </section>
-
     </div>
-
     <div class="container rodape__base">
       <p>&copy; 2025 Instituto Luz na Rua. Todos os direitos reservados.</p>
       <p>Prestação de contas disponível em nosso portal da transparência.</p>
@@ -114,7 +99,43 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
+  <!-- ============================================================
+       TEMPLATES — moldes clonados pelo JavaScript
+       ============================================================ -->
+
+  <template id="tpl-pilar">
+    <article class="cartao">
+      <span class="cartao__icone" aria-hidden="true"></span>
+      <h3 class="cartao__titulo"></h3>
+      <p class="cartao__descricao"></p>
+      <ul class="cartao__lista"></ul>
+      <a class="link-seta">Texto do link<span class="sr-only"></span></a>
+    </article>
+  </template>
+
+  <template id="tpl-acao">
+    <article class="cartao cartao--acao">
+      <span class="cartao__icone" aria-hidden="true"></span>
+      <h3 class="cartao__titulo"></h3>
+      <p class="cartao__descricao"></p>
+      <a class="botao"></a>
+    </article>
+  </template>
+
+  <template id="tpl-resultado">
+    <article class="cartao cartao--numero">
+      <span class="cartao__numero"></span>
+      <p class="cartao__texto"></p>
+    </article>
+  </template>
+
+  <template id="tpl-chip">
+    <span class="chip"></span>
+  </template>
+
+  <script src="js/dados.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/templates.js"></script>
   <script src="js/router.js"></script>
 </body>
 </html>
