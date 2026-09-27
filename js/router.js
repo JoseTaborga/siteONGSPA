@@ -56,6 +56,11 @@
       // 3. Limpa e injeta o novo conteúdo
       app.innerHTML = html;
 
+      // Reconstroi os componentes a partir dos templates
+      if (typeof window.renderizarTemplates === 'function') {
+        window.renderizarTemplates();
+      }
+
       // 4. Atualiza título, menu ativo e foco
       document.title = rota.titulo;
       destacarLinkAtivo(caminho);
