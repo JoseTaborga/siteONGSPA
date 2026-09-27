@@ -1,0 +1,252 @@
+<section class="pagina-topo" aria-labelledby="titulo-pagina">
+  <div class="container">
+    <nav aria-label="Trilha de navegação" class="trilha">
+      <ol>
+        <li><a href="#/inicio">Início</a></li>
+        <li aria-current="page">Cadastro</li>
+      </ol>
+    </nav>
+
+    <h1 id="titulo-pagina">Faça parte da nossa rede</h1>
+    <p class="pagina-topo__descricao">
+      Preencha o formulário abaixo para se cadastrar como voluntário ou doador.
+      Todos os dados são validados para garantir a integridade do seu registro
+      e o contato correto da nossa equipe.
+    </p>
+  </div>
+</section>
+
+<section class="secao" aria-labelledby="titulo-formulario">
+  <div class="container container--formulario">
+
+    <aside class="formulario__lateral" aria-labelledby="titulo-lateral">
+      <h2 id="titulo-lateral">Por que pedimos esses dados?</h2>
+      <ul class="lista-marcada">
+        <li><strong>CPF:</strong> exigido para emissão de recibo de doação e para o registro legal do voluntário.</li>
+        <li><strong>Telefone:</strong> usado pela coordenação para escalas de rota e avisos urgentes.</li>
+        <li><strong>Endereço e CEP:</strong> direcionam você para a regional mais próxima e alimentam nossos relatórios de impacto territorial.</li>
+      </ul>
+      <p class="aviso-privacidade">
+        Seus dados não são compartilhados com terceiros e seguem a
+        <strong>Lei Geral de Proteção de Dados (LGPD)</strong>.
+      </p>
+    </aside>
+
+    <div class="formulario__principal">
+      <h2 id="titulo-formulario" class="sr-only">Formulário de cadastro</h2>
+
+      <form id="form-cadastro" action="#" method="post" autocomplete="on">
+        <fieldset>
+          <legend>1. Dados pessoais</legend>
+
+          <div class="campo">
+            <label for="nome">Nome completo <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <input type="text" id="nome" name="nome" required minlength="3" maxlength="80"
+                   autocomplete="name" placeholder="Ex.: Maria Aparecida de Souza"
+                   aria-describedby="ajuda-nome">
+            <small id="ajuda-nome" class="ajuda">Informe seu nome como consta no documento.</small>
+          </div>
+
+          <div class="campo">
+            <label for="email">E-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" required
+                   autocomplete="email" placeholder="voce@exemplo.com">
+          </div>
+
+          <div class="campo-grupo">
+            <div class="campo">
+              <label for="cpf">CPF <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="cpf" name="cpf" required inputmode="numeric"
+                     maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                     title="Informe o CPF no formato 000.000.000-00"
+                     placeholder="000.000.000-00"
+                     aria-describedby="erro-cpf ajuda-cpf">
+              <small id="ajuda-cpf" class="ajuda">Digite apenas números. A validação é feita automaticamente.</small>
+              <small id="erro-cpf" class="erro" role="alert" hidden></small>
+            </div>
+
+            <div class="campo">
+              <label for="telefone">Telefone celular <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input type="tel" id="telefone" name="telefone" required inputmode="tel"
+                     maxlength="15" pattern="\(\d{2}\)\s\d{5}-\d{4}"
+                     title="Informe o telefone no formato (00) 00000-0000"
+                     placeholder="(00) 00000-0000"
+                     aria-describedby="erro-telefone ajuda-telefone">
+              <small id="ajuda-telefone" class="ajuda">Informe DDD + número.</small>
+              <small id="erro-telefone" class="erro" role="alert" hidden></small>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="nascimento">Data de nascimento</label>
+            <input type="date" id="nascimento" name="nascimento" max="2010-12-31" autocomplete="bday">
+            <small class="ajuda">Apenas para controle de escalas de menores de idade acompanhados.</small>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Endereço</legend>
+
+          <div class="campo-grupo campo-grupo--cep">
+            <div class="campo">
+              <label for="cep">CEP <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="cep" name="cep" required inputmode="numeric"
+                     maxlength="9" pattern="\d{5}-\d{3}"
+                     title="Informe o CEP no formato 00000-000"
+                     placeholder="00000-000" autocomplete="postal-code"
+                     aria-describedby="erro-cep status-cep">
+              <small id="status-cep" class="ajuda">Preenche o endereço automaticamente.</small>
+              <small id="erro-cep" class="erro" role="alert" hidden></small>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="logradouro">Logradouro (rua/avenida) <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <input type="text" id="logradouro" name="logradouro" required maxlength="120"
+                   autocomplete="address-line1" placeholder="Rua, avenida, alameda...">
+          </div>
+
+          <div class="campo-grupo campo-grupo--numero">
+            <div class="campo">
+              <label for="numero">Número <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="numero" name="numero" required maxlength="10"
+                     placeholder="Ex.: 245 ou S/N">
+            </div>
+            <div class="campo">
+              <label for="complemento">Complemento</label>
+              <input type="text" id="complemento" name="complemento" maxlength="60"
+                     placeholder="Apto, bloco, casa...">
+            </div>
+          </div>
+
+          <div class="campo-grupo">
+            <div class="campo">
+              <label for="bairro">Bairro <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="bairro" name="bairro" required maxlength="80" autocomplete="address-line2">
+            </div>
+            <div class="campo">
+              <label for="cidade">Cidade <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="cidade" name="cidade" required maxlength="80" autocomplete="address-level2">
+            </div>
+            <div class="campo campo--uf">
+              <label for="uf">UF <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <select id="uf" name="uf" required autocomplete="address-level1">
+                <option value="">--</option>
+                <option value="AC">AC</option><option value="AL">AL</option>
+                <option value="AP">AP</option><option value="AM">AM</option>
+                <option value="BA">BA</option><option value="CE">CE</option>
+                <option value="DF">DF</option><option value="ES">ES</option>
+                <option value="GO">GO</option><option value="MA">MA</option>
+                <option value="MT">MT</option><option value="MS">MS</option>
+                <option value="MG">MG</option><option value="PA">PA</option>
+                <option value="PB">PB</option><option value="PR">PR</option>
+                <option value="PE">PE</option><option value="PI">PI</option>
+                <option value="RJ">RJ</option><option value="RN">RN</option>
+                <option value="RS">RS</option><option value="RO">RO</option>
+                <option value="RR">RR</option><option value="SC">SC</option>
+                <option value="SP">SP</option><option value="SE">SE</option>
+                <option value="TO">TO</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Como você quer ajudar?</legend>
+
+          <div class="campo">
+            <span class="rotulo-grupo" id="rotulo-perfil">Perfil <span class="obrigatorio" aria-hidden="true">*</span></span>
+            <div class="opcoes" role="radiogroup" aria-labelledby="rotulo-perfil">
+              <label class="opcao"><input type="radio" name="perfil" value="voluntario" required> <span>Quero ser voluntário(a)</span></label>
+              <label class="opcao"><input type="radio" name="perfil" value="doador"> <span>Quero ser doador(a)</span></label>
+              <label class="opcao"><input type="radio" name="perfil" value="ambos"> <span>As duas coisas</span></label>
+            </div>
+          </div>
+
+          <div class="campo">
+            <span class="rotulo-grupo">Áreas de interesse (opcional)</span>
+            <div class="opcoes opcoes--checks">
+              <label class="opcao"><input type="checkbox" name="area" value="alimentacao"> <span>Alimentação e cozinha</span></label>
+              <label class="opcao"><input type="checkbox" name="area" value="saude"> <span>Saúde e escuta</span></label>
+              <label class="opcao"><input type="checkbox" name="area" value="juridico"> <span>Apoio jurídico</span></label>
+              <label class="opcao"><input type="checkbox" name="area" value="educacao"> <span>Educação e capacitação</span></label>
+              <label class="opcao"><input type="checkbox" name="area" value="logistica"> <span>Logística e transporte</span></label>
+              <label class="opcao"><input type="checkbox" name="area" value="doacao"> <span>Doação financeira</span></label>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="disponibilidade">Disponibilidade</label>
+            <select id="disponibilidade" name="disponibilidade">
+              <option value="">Selecione...</option>
+              <option value="noite">Noites (rota de distribuição)</option>
+              <option value="manha">Manhãs (cozinha e mutirões)</option>
+              <option value="tarde">Tardes (oficinas e cursos)</option>
+              <option value="fds">Fins de semana</option>
+              <option value="remoto">Remoto (apoio administrativo)</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="mensagem">Mensagem (opcional)</label>
+            <textarea id="mensagem" name="mensagem" rows="4" maxlength="500"
+                      placeholder="Conte-nos como você gostaria de contribuir."></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Consentimento</legend>
+
+          <label class="opcao opcao--termo">
+            <input type="checkbox" id="aceite" name="aceite" required>
+            <span>
+              Li e concordo com o tratamento dos meus dados conforme a LGPD e com o
+              <button type="button" class="link-botao"
+                      data-abrir-modal="modal-termo" aria-haspopup="dialog">
+                Termo de Voluntariado
+              </button>
+              da organização.
+              <span class="obrigatorio" aria-hidden="true">*</span>
+            </span>
+          </label>
+
+          <label class="opcao opcao--termo">
+            <input type="checkbox" id="newsletter" name="newsletter" checked>
+            <span>Quero receber o boletim mensal de impacto por e-mail.</span>
+          </label>
+        </fieldset>
+
+        <div class="formulario__acoes">
+          <button type="reset" class="botao botao--contorno">Limpar</button>
+          <button type="submit" class="botao botao--primario">Enviar cadastro</button>
+        </div>
+
+        <p class="formulario__legenda">
+          <span class="obrigatorio" aria-hidden="true">*</span> Campos obrigatórios.
+        </p>
+      </form>
+
+      <dialog id="modal-termo" class="modal" aria-labelledby="titulo-termo">
+        <header class="modal__cabecalho">
+          <h2 id="titulo-termo">Termo de Voluntariado</h2>
+          <button type="button" class="modal__fechar" data-fechar-modal aria-label="Fechar janela">×</button>
+        </header>
+        <div class="modal__corpo">
+          <p>Ao se cadastrar como voluntário(a) do Instituto Luz na Rua, você declara estar ciente das diretrizes de atuação, do código de conduta e da política de proteção de dados da organização.</p>
+          <p>O voluntariado é gratuito, não gera vínculo empregatício e pode ser encerrado a qualquer momento por qualquer das partes, mediante simples comunicação à coordenação.</p>
+          <p>As atividades envolvem contato direto com pessoas em situação de vulnerabilidade. Por isso, todos os voluntários passam por uma formação inicial obrigatória antes de integrarem as rotas de campo.</p>
+        </div>
+        <footer class="modal__rodape">
+          <button type="button" class="botao botao--primario" data-fechar-modal>Entendi</button>
+        </footer>
+      </dialog>
+
+      <div id="mensagem-sucesso" class="mensagem-sucesso" role="status" hidden>
+        <h2>Cadastro enviado com sucesso! 🎉</h2>
+        <p>Recebemos seus dados. Nossa equipe entrará em contato em até 2 dias úteis pelo telefone ou e-mail informado.</p>
+        <p><a href="#/projetos" class="link-seta">Conheça nossos projetos enquanto isso</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
